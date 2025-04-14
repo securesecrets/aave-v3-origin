@@ -28,6 +28,10 @@ abstract contract DeployAaveV3MarketBatchedBase is DeployUtils, MarketInput, Scr
     _loadWarnings(config, flags);
 
     vm.startBroadcast();
+
+    uint256 nonce = vm.getNonce(msg.sender);
+    console.log('NONCE', nonce);
+
     report = AaveV3BatchOrchestration.deployAaveV3(msg.sender, roles, config, flags, report);
     vm.stopBroadcast();
 
